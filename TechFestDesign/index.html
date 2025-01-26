@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNOVATEX 3.0 | Tech Fest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md bg-black/70 border-b border-cyan-500/30">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="orbitron text-2xl font-bold text-cyan-400 neon-glow">INNOVATEX 3.0</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="#events" class="text-white hover:text-cyan-400 transition-colors">Events</a>
+                    <a href="#workshops" class="text-white hover:text-cyan-400 transition-colors">Workshops</a>
+                    <a href="#about" class="text-white hover:text-cyan-400 transition-colors">About</a>
+                    <a href="#contact" class="text-white hover:text-cyan-400 transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-white" id="mobile-menu-button">
+                    <i class="bi bi-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-4 py-2 space-y-3 bg-black/90">
+                <a href="#home" class="block text-white hover:text-cyan-400">Home</a>
+                <a href="#events" class="block text-white hover:text-cyan-400">Events</a>
+                <a href="#workshops" class="block text-white hover:text-cyan-400">Workshops</a>
+                <a href="#about" class="block text-white hover:text-cyan-400">About</a>
+                <a href="#contact" class="block text-white hover:text-cyan-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen cyber-grid flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-fuchsia-500/10"></div>
+        <div class="container mx-auto px-4 py-20 relative">
+            <div class="text-center">
+                <h1 class="orbitron text-4xl md:text-6xl lg:text-7xl font-bold mb-6 glitch">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-500">
+                        <span id="element"></span>
+
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300">Unleash Innovation. Embrace the Future.</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <button class="gradient-border bg-black px-8 py-3 rounded-lg text-cyan-400 hover:text-white transition-colors">
+                        Register Now
+                    </button>
+                    <button class="px-8 py-3 rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all">
+                        Explore Events
+                    </button>
+                </div>
+                <div class="mt-12">
+                    <div class="text-2xl mb-4 text-cyan-400">Event Starts In</div>
+                    <div class="flex justify-center gap-4" id="countdown">
+                        <div class="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
+                            <div id="days" class="text-3xl font-bold">00</div>
+                            <div class="text-sm">Days</div>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
+                            <div id="hours" class="text-3xl font-bold">00</div>
+                            <div class="text-sm">Hours</div>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
+                            <div id="minutes" class="text-3xl font-bold">00</div>
+                            <div class="text-sm">Minutes</div>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
+                            <div id="seconds" class="text-3xl font-bold">00</div>
+                            <div class="text-sm">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <h1 class="orbitron text-3xl md:text-4xl font-bold mb-12 text-center text-cyan-400">Featured Events</h1>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event Card 1 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">CodeRush (24Hrs Hackathon)</div>
+                    <p class="text-gray-300 mb-4">24-hour coding challenge to build innovative solutions</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="click-details-coderush px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Details</button>
+                        <button class="click-button px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 2 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">PITCHATHON</div>
+                    <p class="text-gray-300 mb-4">Test your cybersecurity skills in this capture the flag event</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 3 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">Hardware Hackathon (24Hrs)</div>
+                    <p class="text-gray-300 mb-4">Build the most intelligent AI model and compete</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: ₹40,000</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 4 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">DRONOTRIX</div>
+                    <p class="text-gray-300 mb-4">24-hour coding challenge to build innovative solutions</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 5 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">ROBO WAR</div>
+                    <p class="text-gray-300 mb-4">Test your cybersecurity skills in this capture the flag event</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 6 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">ROBO SOCCER</div>
+                    <p class="text-gray-300 mb-4">Build the most intelligent AI model and compete</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: ₹40,000</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 7 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">RC PLANE</div>
+                    <p class="text-gray-300 mb-4">24-hour coding challenge to build innovative solutions</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 8 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">RC RALLY</div>
+                    <p class="text-gray-300 mb-4">Test your cybersecurity skills in this capture the flag event</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 9 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">LINE FOLLOWER</div>
+                    <p class="text-gray-300 mb-4">Build the most intelligent AI model and compete</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: ₹40,000</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 10 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">MAZE RUNNER</div>
+                    <p class="text-gray-300 mb-4">24-hour coding challenge to build innovative solutions</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 11 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">UI/UX CHALLENGE</div>
+                    <p class="text-gray-300 mb-4">Test your cybersecurity skills in this capture the flag event</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: TBA</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+                <!-- Event Card 12 -->
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <div class="text-cyan-400 text-xl mb-4">PROJECT EXPO</div>
+                    <p class="text-gray-300 mb-4">Build the most intelligent AI model and compete</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-fuchsia-400">Prize: ₹40,000</span>
+                        <button class="px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section id="workshops" class="py-20 bg-black/50">
+        <div class="container mx-auto px-4">
+            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-12 text-center text-cyan-400">Technical Workshops</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Workshop 1 -->
+                <div class="bg-gradient-to-r from-cyan-500/10 to-fuchsia-500/10 p-6 rounded-xl border border-cyan-500/30">
+                    <div class="text-xl mb-4 text-cyan-400">Web3 Development</div>
+                    <p class="text-gray-300 mb-4">Learn blockchain development and create your first DApp</p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <i class="bi bi-calendar text-fuchsia-400"></i>
+                        <span>March 15, 2024</span>
+                    </div>
+                    <button class="w-full py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Join Workshop</button>
+                </div>
+                <!-- Workshop 2 -->
+                <div class="bg-gradient-to-r from-cyan-500/10 to-fuchsia-500/10 p-6 rounded-xl border border-cyan-500/30">
+                    <div class="text-xl mb-4 text-cyan-400">AI/ML Workshop</div>
+                    <p class="text-gray-300 mb-4">Deep dive into machine learning algorithms and neural networks</p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <i class="bi bi-calendar text-fuchsia-400"></i>
+                        <span>March 16, 2024</span>
+                    </div>
+                    <button class="w-full py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Join Workshop</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-12 text-center text-cyan-400">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="gradient-border bg-black p-6 rounded-xl">
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label class="block text-cyan-400 mb-2">Name</label>
+                            <input type="text" class="w-full bg-gray-900 border border-cyan-500/30 rounded p-2 text-white" required>
+                        </div>
+                        <div>
+                            <label class="block text-cyan-400 mb-2">Email</label>
+                            <input type="email" class="w-full bg-gray-900 border border-cyan-500/30 rounded p-2 text-white" required>
+                        </div>
+                        <div>
+                            <label class="block text-cyan-400 mb-2">Message</label>
+                            <textarea class="w-full bg-gray-900 border border-cyan-500/30 rounded p-2 text-white h-32" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-cyan-400 text-black py-2 rounded hover:bg-cyan-300">Send Message</button>
+                    </form>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <i class="bi bi-geo-alt text-2xl text-cyan-400"></i>
+                        <div>
+                            <h3 class="text-xl text-cyan-400">Location</h3>
+                            <p class="text-gray-300">Presidency University Bangalore, Rajanukunte</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="bi bi-envelope text-2xl text-cyan-400"></i>
+                        <div>
+                            <h3 class="text-xl text-cyan-400">Email</h3>
+                            <p class="text-gray-300">info@nexus2024.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="bi bi-phone text-2xl text-cyan-400"></i>
+                        <div>
+                            <h3 class="text-xl text-cyan-400">Phone</h3>
+                            <p class="text-gray-300">+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-8">
+                        <a href="#" class="text-2xl text-cyan-400 hover:text-cyan-300"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-2xl text-cyan-400 hover:text-cyan-300"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-2xl text-cyan-400 hover:text-cyan-300"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-2xl text-cyan-400 hover:text-cyan-300"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-cyan-500/30">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2024 NEXUS Tech Fest. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+      <!-- Registration Modal -->
+    <div id="registration-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+        <div class="bg-black text-white p-6 rounded-lg w-96 gradient-border relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+        <button
+            id="close-modal"
+            class="absolute top-3 right-3 text-2xl text-cyan-400 hover:text-fuchsia-400 transition-colors"
+        >
+            &times;
+        </button>
+        <h2 class="text-center orbitron text-2xl font-bold text-cyan-400 mb-6">Register Now</h2>
+        <form id="registration-form" class="space-y-4">
+            <div>
+            <label class="block text-cyan-400 mb-2">Team Leader Name *</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                required
+            />
+            </div>
+            <div>
+            <label class="block text-cyan-400 mb-2">Team Leader Email *</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                required
+            />
+            </div>
+            <div>
+            <label class="block text-cyan-400 mb-2">Team Leader Phone *</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                required
+            />
+            </div>
+            <div>
+            <label class="block text-cyan-400 mb-2">Member Name 1 *</label>
+            <input
+                type="name"
+                id="name2"
+                name="name2"
+                placeholder="Enter your full name"
+                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                required
+            />
+            </div>
+            <div>
+                <label class="block text-cyan-400 mb-2">Member Name 2 *</label>
+                <input
+                    type="name"
+                    id="name3"
+                    name="name3"
+                    placeholder="Enter your full name"
+                    class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                    required
+                />
+            </div>
+            <div>
+                <label class="block text-cyan-400 mb-2">Member Name 3</label>
+                <input
+                    type="name"
+                    id="name4"
+                    name="name4"
+                    placeholder="Enter your full name"
+                    class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                />
+            </div>
+            <div>
+                <label class="block text-cyan-400 mb-2">Member Name 4</label>
+                <input
+                    type="name"
+                    id="name5"
+                    name="name5"
+                    placeholder="Enter your full name"
+                    class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                />
+            </div>
+            <div>
+            <label class="block text-cyan-400 mb-2">Event *</label>
+            <select
+                id="event"
+                name="event"
+                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                required
+            >
+                <option value="" disabled selected>Select an Event</option>
+                <option value="CodeRush">CodeRush (24Hrs Hackathon)</option>
+                <option value="Pitchathon">Pitchathon</option>
+                <option value="RoboWar">Robo War</option>
+                <option value="ProjectExpo">Project Expo</option>
+                <option value="CodeRush">CodeRush (24Hrs Hackathon)</option>
+                <option value="Pitchathon">Pitchathon</option>
+                <option value="RoboWar">Robo War</option>
+                <option value="ProjectExpo">Project Expo</option>
+                <option value="CodeRush">CodeRush (24Hrs Hackathon)</option>
+                <option value="Pitchathon">Pitchathon</option>
+                <option value="RoboWar">Robo War</option>
+                <option value="ProjectExpo">Project Expo</option>
+                
+            </select>
+            </div>
+            <button
+            type="submit"
+            class="w-full bg-cyan-400 py-2 rounded hover:bg-cyan-300 text-black font-bold"
+            >
+            Submit
+            </button>
+        </form>
+        </div>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div id="event-details-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+        <div class="bg-black text-white p-6 rounded-lg gradient-border relative max-h-[90vh] w-full md:w-[60%] lg:w-[50%] overflow-y-auto custom-scrollbar">
+        <button
+            id="close-event-modal"
+            class="absolute top-3 right-3 text-2xl text-cyan-400 hover:text-fuchsia-400 transition-colors"
+        >
+            &times;
+        </button>
+        <h2 id="event-title" class="text-center orbitron text-2xl font-bold text-cyan-400 mb-6">Event Title</h2>
+        <img
+            id="event-image"
+            src=""
+            alt="Event Image"
+            class="rounded-lg mb-4 w-full max-h-60 object-cover"
+        />
+        <p id="event-description" class="text-gray-300 mb-4">
+            Event description goes here. It will be dynamically updated for each event.
+        </p>
+        <ul class="space-y-2">
+            <li><strong>Entry Fee:</strong> <span id="event-fee">Free</span></li>
+            <li><strong>Date:</strong> <span id="event-date">March 15, 2024</span></li>
+            <li><strong>Time:</strong> <span id="event-time">10:00 AM</span></li>
+            <li><strong>Venue:</strong> <span id="event-venue">Auditorium</span></li>
+        </ul>
+        <br>
+        <button class="rule-book-button px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Rule Book</button>
+        </div>
+    </div>
+  
+    <script src="script.js"></script>
+
+    <!--Moving Letters-->>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+    var typed = new Typed('#element', {
+      strings: ['Innovatex 2.0 To',' Innovatex 3.0'],
+      typeSpeed: 50,
+    });
+    </script>
+
+<script>
+    document.addEventListener('mousemove', (e) => {
+        const glitter = document.createElement('div');
+        glitter.classList.add('glitter');
+        document.body.appendChild(glitter);
+
+        // Position the glitter at the cursor position
+        glitter.style.left = `${e.pageX}px`;
+        glitter.style.top = `${e.pageY}px`;
+
+        // Set random size and opacity for variation
+        glitter.style.width = `${Math.random() * 10 + 5}px`;
+        glitter.style.height = `${Math.random() * 10 + 5}px`;
+        glitter.style.opacity = Math.random();
+
+        // Remove the glitter after animation
+        setTimeout(() => {
+            glitter.remove();
+        }, 600); // Matches the CSS animation duration
+    });
+</script>
+
+	</body>
+</html>
