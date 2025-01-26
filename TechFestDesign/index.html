@@ -99,7 +99,7 @@
                     <div class="flex justify-between items-center">
                         <span class="text-fuchsia-400">Prize: TBA</span>
                         <button class="click-details-coderush px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Details</button>
-                        <button class="click-button px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Register</button>
+                        <button class="register-button px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300" data-event="CodeRush">Register</button>
                     </div>
                 </div>
                 <!-- Event Card 2 -->
@@ -299,124 +299,66 @@
 
 
       <!-- Registration Modal -->
-    <div id="registration-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
-        <div class="bg-black text-white p-6 rounded-lg w-96 gradient-border relative max-h-[90vh] overflow-y-auto custom-scrollbar">
-        <button
-            id="close-modal"
-            class="absolute top-3 right-3 text-2xl text-cyan-400 hover:text-fuchsia-400 transition-colors"
-        >
-            &times;
-        </button>
-        <h2 class="text-center orbitron text-2xl font-bold text-cyan-400 mb-6">Register Now</h2>
-        <form id="registration-form" class="space-y-4">
+      <div id="registration-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+        <div class="bg-black text-white p-6 rounded-lg max-w-lg w-full gradient-border relative">
+          <button id="close-modal" class="absolute top-3 right-3 text-2xl text-cyan-400 hover:text-fuchsia-400 transition-colors">&times;</button>
+          <h2 class="text-center orbitron text-2xl font-bold text-cyan-400 mb-6">Register Now</h2>
+          <form id="registration-form" class="space-y-4">
+            <!-- Event Selection -->
             <div>
-            <label class="block text-cyan-400 mb-2">Team Leader Name *</label>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your full name"
-                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                required
-            />
-            </div>
-            <div>
-            <label class="block text-cyan-400 mb-2">Team Leader Email *</label>
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                required
-            />
-            </div>
-            <div>
-            <label class="block text-cyan-400 mb-2">Team Leader Phone *</label>
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Enter your phone number"
-                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                required
-            />
-            </div>
-            <div>
-            <label class="block text-cyan-400 mb-2">Member Name 1 *</label>
-            <input
-                type="name"
-                id="name2"
-                name="name2"
-                placeholder="Enter your full name"
-                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                required
-            />
-            </div>
-            <div>
-                <label class="block text-cyan-400 mb-2">Member Name 2 *</label>
-                <input
-                    type="name"
-                    id="name3"
-                    name="name3"
-                    placeholder="Enter your full name"
+                <div>
+                    <label class="block text-cyan-400 mb-2">Selected Event </label>
+                    <input
+                    type="text"
+                    id="selected-event"
+                    name="event"
+                    readonly
                     class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                    required
-                />
+                    />
+                </div>
             </div>
             <div>
-                <label class="block text-cyan-400 mb-2">Member Name 3</label>
-                <input
-                    type="name"
-                    id="name4"
-                    name="name4"
-                    placeholder="Enter your full name"
-                    class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                />
+                <label class="block text-cyan-400 mb-2">Team Name *</label>
+                <input type="text" id="team-name" name="teamName" placeholder="Enter team name" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required>
+              </div>
+            <!-- Team Leader Details -->
+            <div>
+              <label class="block text-cyan-400 mb-2">Team Leader Name *</label>
+              <input type="text" id="team-leader-name" name="teamLeaderName" placeholder="Enter your full name" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required>
             </div>
             <div>
-                <label class="block text-cyan-400 mb-2">Member Name 4</label>
-                <input
-                    type="name"
-                    id="name5"
-                    name="name5"
-                    placeholder="Enter your full name"
-                    class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                />
+              <label class="block text-cyan-400 mb-2">Team Leader Email *</label>
+              <input type="email" id="team-leader-email" name="teamLeaderEmail" placeholder="Enter your email" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required>
             </div>
             <div>
-            <label class="block text-cyan-400 mb-2">Event *</label>
-            <select
-                id="event"
-                name="event"
-                class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                required
-            >
-                <option value="" disabled selected>Select an Event</option>
-                <option value="CodeRush">CodeRush (24Hrs Hackathon)</option>
-                <option value="Pitchathon">Pitchathon</option>
-                <option value="RoboWar">Robo War</option>
-                <option value="ProjectExpo">Project Expo</option>
-                <option value="CodeRush">CodeRush (24Hrs Hackathon)</option>
-                <option value="Pitchathon">Pitchathon</option>
-                <option value="RoboWar">Robo War</option>
-                <option value="ProjectExpo">Project Expo</option>
-                <option value="CodeRush">CodeRush (24Hrs Hackathon)</option>
-                <option value="Pitchathon">Pitchathon</option>
-                <option value="RoboWar">Robo War</option>
-                <option value="ProjectExpo">Project Expo</option>
-                
-            </select>
+              <label class="block text-cyan-400 mb-2">Team Leader Phone *</label>
+              <input type="tel" id="team-leader-phone" name="teamLeaderPhone" placeholder="Enter your phone number" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required>
             </div>
-            <button
-            type="submit"
-            class="w-full bg-cyan-400 py-2 rounded hover:bg-cyan-300 text-black font-bold"
-            >
-            Submit
-            </button>
-        </form>
+            <!-- Team Size Selection -->
+            <div>
+              <label class="block text-cyan-400 mb-2">Select Number of Team Members *</label>
+              <div class="flex space-x-4">
+                <label class="flex items-center">
+                  <input type="radio" name="teamSize" value="1" class="mr-2" required> 2
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="teamSize" value="2" class="mr-2" required> 3
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="teamSize" value="3" class="mr-2" required> 4
+                </label>
+              </div>
+            </div>
+            <!-- Dynamic Team Members Section -->
+            <div id="team-members-section" class="space-y-4"></div>
+            <!-- Total Amount -->
+            <div>
+              <p class="text-cyan-400">Total Amount: <span id="total-amount" class="text-white">₹0</span></p>
+            </div>
+            <button type="submit" class="w-full bg-cyan-400 py-2 rounded hover:bg-cyan-300 text-black font-bold">Submit</button>
+          </form>
         </div>
-    </div>
+      </div>
 
     <!-- Event Details Modal -->
     <div id="event-details-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
@@ -442,9 +384,13 @@
             <li><strong>Date:</strong> <span id="event-date">March 15, 2024</span></li>
             <li><strong>Time:</strong> <span id="event-time">10:00 AM</span></li>
             <li><strong>Venue:</strong> <span id="event-venue">Auditorium</span></li>
+            <li><strong>Rules:</strong></li>
         </ul>
+        <p id="event-rules" class="text-gray-300 mb-4">
+            Event Rules goes here. It will be dynamically updated for each event.
+        </p>
         <br>
-        <button class="rule-book-button px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Rule Book</button>
+        <button class="brochure-button px-4 py-2 bg-cyan-400 text-black rounded hover:bg-cyan-300">Event Brochure</button>
         </div>
     </div>
   

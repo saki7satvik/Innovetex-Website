@@ -93,7 +93,47 @@
             date: "TBA",
             time: "TBA",
             venue: "TBA",
-            ruleBook : "RC Rally Rule Book Innovatex 3.0.pdf",
+            rules:`DESIGN SPECIFICATIONS:
+                    The car should be custom made with generic parts. Ready to assemble and drive RC cars are NOT
+                    permitted to contest in the event.
+                    • Total allowable dimensions of the car are: - Width: 15-30 cm
+                    Length: 25-50 cm
+                    • Maximum allowable weight of the car is 2 kg.
+                    • Small nitro IC Engines are not permitted; the car must be powered electrically using motors
+                    and a battery. It is advisable that the contestants use batteries that can easily power the car
+                    for the entire event. Charging mid-race is not allowed.
+                    • Receiver and transmitter used must have sufficient range. Recommended would be at-least
+                    100 meters.
+                    • Use of FPV is advised but is not necessary. Person driving is not allowed to run along the circuit.
+                    Organizers will provide best track visibility possible, but despite that if the driver is not
+                    confident, use of FPV is allowed.
+                    • Build of the car must be able to sustain rocky terrain and gravel. Breakdown mid-event will
+                    lead to disqualification.
+                    GENERAL GUIDELINES:
+                    • Each participant is given two chances to run their RC car around the designed obstacle course
+                    and their time is recorded for one lap.
+                    • Obstacles may contain ramps, bumps and heavily banked corners. Best of two times recorded
+                    is considered. This finishing order will determine the starting order for next event.
+                    • Contesting cars will only be permitted to enter the first event if they satisfy all the build
+                    regulations. Only two members per team are allowed to operate on their cars.
+                    • In the event of a minute breach of regulations, the contestant may be allowed to compete
+                    based on the organizers’ discretion. A time penalty or penalty in the form of points deduction
+                    will be awarded prior to the race start. Magnitude of penalty is up to the organizers’ fair
+                    judgment.
+                    Those who finish their regulation checks first will get the first laps; hence it is advised that
+                    contestants make it to the venue on time.
+                    • If the car is overturned during a lap in the first event, the lap is discarded, no additional
+                    attempts will be provided. However, if this occurs in the second event, the organizers will get
+                    it back on track as soon as possible.
+                    • You are advised to hold your position and not rush to your car.
+                    • The entire event will be recorded and all racing incidents will be judged after the race.
+                    Contestants are to note that intentional sabotaging of their opponents race by crashing into
+                    them or tampering with their cars may lead to disqualification and at the minimum is worthy
+                    of a time or points penalty.
+
+                    • Race results will be finalized maximum within one day of completion of event after applying
+                    the necessary time and points penalties. Final scoreboard will consist of points scored in both
+                    events.`,
             },
             Pitchathon: {
             title: "Pitchathon",
@@ -127,17 +167,13 @@
             document.getElementById("event-date").innerText = eventData.date;
             document.getElementById("event-time").innerText = eventData.time;
             document.getElementById("event-venue").innerText = eventData.venue;
+            document.getElementById("event-rules").innerText = eventData.rules;
+
 
             
 
             // Show modal
-            eventDetailsModal.classList.remove("hidden");
-
-             // Set the Rule Book link
-             const ruleBookButton = document.getElementById("rule-book-button");
-             ruleBookButton.onclick = () => {
-             window.open(eventData.ruleBook, "_blank");
-             };
+            eventDetailsModal.classList.remove("hidden");                                 
         }
 
         document
@@ -156,6 +192,75 @@
             }
         });
 
+
+
+
+    const eventData = {
+      CodeRush: 500,
+      Pitchathon: 400,
+      RoboWar: 600,
+      ProjectExpo: 300,
+      RoboSoccer: 700,
+      MazeRunner: 500,
+      UIUXChallenge: 400,
+      RCPlane: 800,
+      RCRally: 700,
+      LineFollower: 500,
+      HardwareHackathon: 1000,
+      DroneChallenge: 1200,
+    };
+  
+    const eventSelect = document.getElementById("event-select");
+    const teamSizeInputs = document.querySelectorAll('input[name="teamSize"]');
+    const teamMembersSection = document.getElementById("team-members-section");
+    const totalAmountElement = document.getElementById("total-amount");
+    const selectedEventInput = document.getElementById("selected-event");
+  
+    let selectedEventPrice = 0;
+  
+     // Show modal and update event
+    document.querySelectorAll(".register-button").forEach((button) => {
+        button.addEventListener("click", (e) => {
+        const eventName = e.target.dataset.event; // Get event name from data attribute
+        selectedEventInput.value = eventName;
+        selectedEventPrice = eventData[eventName];
+        updateTotalAmount();
+        modal.classList.remove("hidden");
+        });
+    });
+
+    // Handle team size change
+    teamSizeInputs.forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const teamSize = parseInt(e.target.value, 10);
+  
+        // Update dynamic fields
+        teamMembersSection.innerHTML = ""; // Clear existing fields
+        for (let i = 1; i <= teamSize; i++) {
+          const memberFields = `
+            <div>
+              <label class="block text-cyan-400 mb-2">Member Name ${i+1} *</label>
+              <input type="text" name="memberName${i+1}" placeholder="Enter member ${i+1}'s name" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required>
+            </div>
+            <div>
+              <label class="block text-cyan-400 mb-2">Member Phone ${i+1} *</label>
+              <input type="tel" name="memberPhone${i+1}" placeholder="Enter member ${i+1}'s phone" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required>
+            </div>
+          `;
+          teamMembersSection.insertAdjacentHTML("beforeend", memberFields);
+        }
+  
+        // Update total amount
+        updateTotalAmount(teamSize);
+      });
+    });
+  
+    // Function to update total amount
+    function updateTotalAmount() {
+      const selectedTeamSize = parseInt(document.querySelector('input[name="teamSize"]:checked')?.value || 0, 10);
+      const totalAmount = (selectedTeamSize + 1) * selectedEventPrice; // Team size + Leader
+      totalAmountElement.innerText = `₹${totalAmount}`;
+    }
 
 
         
