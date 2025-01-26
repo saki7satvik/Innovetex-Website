@@ -70,12 +70,47 @@
 
         // Registration Form Submit Handler
         const registrationForm = document.getElementById("registration-form");
+
         registrationForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            alert("Registration successful!");
-            registrationForm.reset();
-            modal.classList.add("hidden");
-        });
+          e.preventDefault();
+
+          // Get all the form data
+          const formData = new FormData(registrationForm);
+
+          // Extract individual values
+          const selectedEvent = formData.get("event");
+          const teamName = formData.get("teamName");
+          const teamLeaderName = formData.get("teamLeaderName");
+          const teamLeaderEmail = formData.get("teamLeaderEmail");
+          const teamLeaderPhone = formData.get("teamLeaderPhone");
+          const teamSize = formData.get("teamSize");
+
+          // Create an object to store all form data
+          const formDetails = {
+              selectedEvent,
+              teamName,
+              teamLeaderName,
+              teamLeaderEmail,
+              teamLeaderPhone,
+              teamSize,
+              teamMembers: [],
+          };
+
+          // Collect dynamic team member details if available
+          const teamMembersSection = document.getElementById("team-members-section");
+          const teamMemberInputs = teamMembersSection.querySelectorAll("input");
+          teamMemberInputs.forEach((input) => {
+              formDetails.teamMembers.push(input.value);
+          });
+
+          // Print form details in the console
+          console.log("Form Details:", formDetails);
+
+          // Alert success message and reset the form
+          alert("Registration successful!");
+          registrationForm.reset();
+        });     
+
 
 
 
