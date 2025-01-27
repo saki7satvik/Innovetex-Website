@@ -68,50 +68,72 @@
             }
         });
 
+
         // Registration Form Submit Handler
-        const registrationForm = document.getElementById("registration-form");
+const registrationForm = document.getElementById("registration-form");
 
-        registrationForm.addEventListener("submit", (e) => {
-          e.preventDefault();
+registrationForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-          // Get all the form data
-          const formData = new FormData(registrationForm);
+  // Get all the form data
+  const formData = new FormData(registrationForm);
 
-          // Extract individual values
-          const selectedEvent = formData.get("event");
-          const teamName = formData.get("teamName");
-          const teamLeaderName = formData.get("teamLeaderName");
-          const teamLeaderEmail = formData.get("teamLeaderEmail");
-          const teamLeaderPhone = formData.get("teamLeaderPhone");
-          const teamSize = formData.get("teamSize");
+  // Extract individual values
+  const selectedEvent = formData.get("event");
+  const teamName = formData.get("teamName");
+  const teamLeaderName = formData.get("teamLeaderName");
+  const teamLeaderEmail = formData.get("teamLeaderEmail");
+  const teamLeaderPhone = formData.get("teamLeaderPhone");
+  const teamSize = formData.get("teamSize");
 
-          // Create an object to store all form data
-          const formDetails = {
-              selectedEvent,
-              teamName,
-              teamLeaderName,
-              teamLeaderEmail,
-              teamLeaderPhone,
-              teamSize,
-              teamMembers: [],
-          };
+  // Create an object to store all form data
+  const formDetails = {
+    selectedEvent,
+    teamName,
+    teamLeaderName,
+    teamLeaderEmail,
+    teamLeaderPhone,
+    teamSize,
+    teamMembers: [],
+  };
 
-          // Collect dynamic team member details if available
-          const teamMembersSection = document.getElementById("team-members-section");
-          const teamMemberInputs = teamMembersSection.querySelectorAll("input");
-          teamMemberInputs.forEach((input) => {
-              formDetails.teamMembers.push(input.value);
-          });
+  // Collect dynamic team member details if available
+  const teamMembersSection = document.getElementById("team-members-section");
+  const teamMemberInputs = teamMembersSection.querySelectorAll("input");
+  teamMemberInputs.forEach((input) => {
+    const memberDetails = {
+      memberName: input.name === "memberName" ? input.value : null,
+      memberPhone: input.name === "memberPhone" ? input.value : null,
+    };
+    formDetails.teamMembers.push(memberDetails);
+  });
+  console.log("Form Details:", formDetails);
 
-          // Print form details in the console
-          console.log("Form Details:", formDetails);
+  // Send form details to the backend
+  try {
+    const response = await fetch("http://localhost:4000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formDetails),
+    });
 
-          // Alert success message and reset the form
-          alert("Registration successful!");
-          registrationForm.reset();
-        });     
+    if (response.ok) {
+      const result = await response.json();
+      console.log("Server Response:", result);
 
-
+      // Show success message
+      alert("Registration successful!");
+      registrationForm.reset();
+    } else {
+      const error = await response.json();
+      console.error("Error Response:", error);
+      alert(`Registration failed: ${error.message}`);
+    }
+  } catch (error) {
+    console.error("Network Error:", error);
+    alert("An error occurred. Please try again later.");
+  }
+});
 
 
         // Get modal elements
