@@ -93,66 +93,161 @@
             date: "TBA",
             time: "TBA",
             venue: "TBA",
-            rules:`DESIGN SPECIFICATIONS:
-                    The car should be custom made with generic parts. Ready to assemble and drive RC cars are NOT
-                    permitted to contest in the event.
-                    • Total allowable dimensions of the car are: - Width: 15-30 cm
-                    Length: 25-50 cm
-                    • Maximum allowable weight of the car is 2 kg.
-                    • Small nitro IC Engines are not permitted; the car must be powered electrically using motors
-                    and a battery. It is advisable that the contestants use batteries that can easily power the car
-                    for the entire event. Charging mid-race is not allowed.
-                    • Receiver and transmitter used must have sufficient range. Recommended would be at-least
-                    100 meters.
-                    • Use of FPV is advised but is not necessary. Person driving is not allowed to run along the circuit.
-                    Organizers will provide best track visibility possible, but despite that if the driver is not
-                    confident, use of FPV is allowed.
-                    • Build of the car must be able to sustain rocky terrain and gravel. Breakdown mid-event will
-                    lead to disqualification.
-                    GENERAL GUIDELINES:
-                    • Each participant is given two chances to run their RC car around the designed obstacle course
-                    and their time is recorded for one lap.
-                    • Obstacles may contain ramps, bumps and heavily banked corners. Best of two times recorded
-                    is considered. This finishing order will determine the starting order for next event.
-                    • Contesting cars will only be permitted to enter the first event if they satisfy all the build
-                    regulations. Only two members per team are allowed to operate on their cars.
-                    • In the event of a minute breach of regulations, the contestant may be allowed to compete
-                    based on the organizers’ discretion. A time penalty or penalty in the form of points deduction
-                    will be awarded prior to the race start. Magnitude of penalty is up to the organizers’ fair
-                    judgment.
-                    Those who finish their regulation checks first will get the first laps; hence it is advised that
-                    contestants make it to the venue on time.
-                    • If the car is overturned during a lap in the first event, the lap is discarded, no additional
-                    attempts will be provided. However, if this occurs in the second event, the organizers will get
-                    it back on track as soon as possible.
-                    • You are advised to hold your position and not rush to your car.
-                    • The entire event will be recorded and all racing incidents will be judged after the race.
-                    Contestants are to note that intentional sabotaging of their opponents race by crashing into
-                    them or tampering with their cars may lead to disqualification and at the minimum is worthy
-                    of a time or points penalty.
-
-                    • Race results will be finalized maximum within one day of completion of event after applying
-                    the necessary time and points penalties. Final scoreboard will consist of points scored in both
-                    events.`,
+            rules:"TBA",
             },
             Pitchathon: {
             title: "Pitchathon",
-            image: "https://via.placeholder.com/600x300?text=Pitchathon",
+            image: "",
             description: "A competition to pitch your startup idea and win exciting prizes.",
-            fee: "₹200",
-            date: "March 16, 2024",
-            time: "12:00 PM - 3:00 PM",
-            venue: "Conference Hall B",
+            fee: "TBA",
+            date: "TBA",
+            time: "TBA",
+            venue: "TBA",
+            rules:"TBA",
             },
+            HardwareHackathon: {
+              title: "Hardware Hackathon",
+              image: "",
+              description: "TBA",
+              fee: "TBA",
+              date: "TBA",
+              time: "TBA",
+              venue: "TBA",
+              rules:"TBA",
+              },
+            Dronotrix: {
+              title: "Dronotrix",
+              image: "",
+              description: "TBA",
+              fee: "TBA",
+              date: "TBA",
+              time: "TBA",
+              venue: "TBA",
+              rules:"TBA",
+              },
             RoboWar: {
-            title: "RoboWar",
-            image: "https://via.placeholder.com/600x300?text=RoboWar",
-            description: "Build a robot and battle it out in the ultimate RoboWar competition.",
-            fee: "₹1000",
-            date: "March 17, 2024",
-            time: "2:00 PM - 6:00 PM",
-            venue: "Outdoor Arena",
-            },
+                title: "Robo War",
+                image: "",
+                description: "TBA",
+                fee: "TBA",
+                date: "TBA",
+                time: "TBA",
+                venue: "TBA",
+                rules:"TBA",
+                },
+            RoboSoccer: {
+                  title: "Robo Soccer",
+                  image: "",
+                  description: "TBA",
+                  fee: "TBA",
+                  date: "TBA",
+                  time: "TBA",
+                  venue: "TBA",
+                  rules:"TBA",
+                  },
+            RcPlane: {
+                  title: "RC Plane",
+                  image: "",
+                  description: "TBA",
+                  fee: "TBA",
+                  date: "TBA",
+                  time: "TBA",
+                  venue: "TBA",
+                  rules:"TBA",
+                  },
+            RcRally: {
+              title: "RC RALLY (Off-Road Challenge)",
+              image: "",
+              description: "Participants must design a custom-built remote-controlled car to navigate an off-road rally track filled with obstacles and challenging terrain. The goal is to achieve the highest score by completing the rally course, collecting points, and finishing in the shortest possible time.",
+              fee: "TBA",
+              date: "TBA",
+              time: "TBA",
+              venue: "TBA",
+              rules:`DESIGN SPECIFICATIONS:
+                      The car should be custom made with generic parts. Ready to assemble and drive RC cars are NOT
+                      permitted to contest in the event.
+                      • Total allowable dimensions of the car are: - 
+                        Width: 15-30 cm
+                        Length: 25-50 cm
+                        Height: 15 cm
+                      • Maximum allowable weight of the car is 2 kg.
+                      • Small nitro IC Engines are not permitted; the car must be powered electrically using motors
+                      and a battery. It is advisable that the contestants use batteries that can easily power the car
+                      for the entire event. Charging mid-race is not allowed.
+                      • Receiver and transmitter used must have sufficient range. Recommended would be at-least
+                      100 meters.
+                      • Use of FPV is advised but is not necessary. Person driving is not allowed to run along the circuit.
+                      Organizers will provide best track visibility possible, but despite that if the driver is not
+                      confident, use of FPV is allowed.
+                      • Build of the car must be able to sustain rocky terrain and gravel. Breakdown mid-event will
+                      lead to disqualification.
+                      GENERAL GUIDELINES:
+                      • Each participant is given two chances to run their RC car around the designed obstacle course
+                      and their time is recorded for one lap.
+                      • Obstacles may contain ramps, bumps and heavily banked corners. Best of two times recorded
+                      is considered. This finishing order will determine the starting order for next event.
+                      • Contesting cars will only be permitted to enter the first event if they satisfy all the build
+                      regulations. Only two members per team are allowed to operate on their cars.
+                      • In the event of a minute breach of regulations, the contestant may be allowed to compete
+                      based on the organizers’ discretion. A time penalty or penalty in the form of points deduction
+                      will be awarded prior to the race start. Magnitude of penalty is up to the organizers’ fair
+                      judgment.
+                      Those who finish their regulation checks first will get the first laps; hence it is advised that
+                      contestants make it to the venue on time.
+                      • If the car is overturned during a lap in the first event, the lap is discarded, no additional
+                      attempts will be provided. However, if this occurs in the second event, the organizers will get
+                      it back on track as soon as possible.
+                      • You are advised to hold your position and not rush to your car.
+                      • The entire event will be recorded and all racing incidents will be judged after the race.
+                      Contestants are to note that intentional sabotaging of their opponents race by crashing into
+                      them or tampering with their cars may lead to disqualification and at the minimum is worthy
+                      of a time or points penalty.
+  
+                      • Race results will be finalized maximum within one day of completion of event after applying
+                      the necessary time and points penalties. Final scoreboard will consist of points scored in both
+                      events.`,
+              },
+              LineFollower: {
+                title: "Line Follower",
+                image: "",
+                description: "TBA",
+                fee: "TBA",
+                date: "TBA",
+                time: "TBA",
+                venue: "TBA",
+                rules:"TBA",
+                },
+              MazeRunner: {
+                  title: "Maze Runner",
+                  image: "",
+                  description: "TBA",
+                  fee: "TBA",
+                  date: "TBA",
+                  time: "TBA",
+                  venue: "TBA",
+                  rules:"TBA",
+                  },
+              UiChallenge: {
+                    title: "UI/UX Challenge",
+                    image: "",
+                    description: "TBA",
+                    fee: "TBA",
+                    date: "TBA",
+                    time: "TBA",
+                    venue: "TBA",
+                    rules:"TBA",
+                    },
+              ProjectExpo: {
+                      title: "Project Expo",
+                      image: "",
+                      description: "TBA",
+                      fee: "TBA",
+                      date: "TBA",
+                      time: "TBA",
+                      venue: "TBA",
+                      rules:"TBA",
+                      },
+            
         };
 
         // Function to open the modal and populate details
@@ -180,6 +275,50 @@
         .querySelector(".click-details-coderush")
         .addEventListener("click", () => openEventModal("CodeRush"));
 
+        document
+        .querySelector(".click-details-pitchathon")
+        .addEventListener("click", () => openEventModal("Pitchathon"));
+
+        document
+        .querySelector(".click-details-hardware")
+        .addEventListener("click", () => openEventModal("HardwareHackathon"));
+
+        document
+        .querySelector(".click-details-dronotrix")
+        .addEventListener("click", () => openEventModal("Dronotrix"));
+
+        document
+        .querySelector(".click-details-robowar")
+        .addEventListener("click", () => openEventModal("RoboWar"));
+
+        document
+        .querySelector(".click-details-robosoccer")
+        .addEventListener("click", () => openEventModal("RoboSoccer"));
+
+        document
+        .querySelector(".click-details-rcplane")
+        .addEventListener("click", () => openEventModal("RcPlane"));
+
+        document
+        .querySelector(".click-details-rcrally")
+        .addEventListener("click", () => openEventModal("RcRally"));
+
+        document
+        .querySelector(".click-details-linefollower")
+        .addEventListener("click", () => openEventModal("LineFollower"));
+
+        document
+        .querySelector(".click-details-mazerunner")
+        .addEventListener("click", () => openEventModal("MazeRunner"));
+
+        document
+        .querySelector(".click-details-uiuxchallenge")
+        .addEventListener("click", () => openEventModal("UiChallenge"));
+
+        document
+        .querySelector(".click-details-projectexpo")
+        .addEventListener("click", () => openEventModal("ProjectExpo"));
+
         // Close modal when clicking on the close button
         closeEventModalButton.addEventListener("click", () => {
             eventDetailsModal.classList.add("hidden");
@@ -204,7 +343,7 @@
       MazeRunner: 500,
       UIUXChallenge: 400,
       RCPlane: 800,
-      RCRally: 700,
+      RCRally: 300,
       LineFollower: 500,
       HardwareHackathon: 1000,
       DroneChallenge: 1200,
