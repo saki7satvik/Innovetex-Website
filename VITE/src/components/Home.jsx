@@ -4,18 +4,13 @@ import "./style.css"
 import { auth, provider, signInWithPopup } from "../firebase/firebase";
 import { AuthContext, AuthProvider } from '../Authentication/context';
 import Dashboard from "./Dashboard";
+import { eventDetails } from "../assets/EventDetail.jsx";
 
 const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [countdown, setCountdown] = useState({
-    days: "00",
-    hours: "00",
-    minutes: "00",
-    seconds: "00",
-  });
 
   //get the authentication from context.jsx
-  const { user,signIn, signOut } = useContext(AuthContext);
+  const { user,signIn, signOut } = useContext(AuthContext); //handleGoogleSignIn
   const [eventDetailsModal, setEventDetailsModal] = useState({
     isOpen: false,
     data: null,
@@ -78,6 +73,7 @@ const App = () => {
     });
     console.log("Form Details:", formDetails);
 
+    // need to write onSubmit function
     try {
       const response = await fetch("http://localhost:4000/register", {
         method: "POST",
@@ -102,7 +98,7 @@ const App = () => {
   };
 
   const handleTeamSizeChange = (e) => {
-    const size = parseInt(e.target.value);
+    const size = parseInt(e.target.value)-1;
     setTeamSize(size);
     setTeamMembers(Array(size).fill({ memberName: '', memberPhone: '' }));
   };
@@ -113,158 +109,10 @@ const App = () => {
     setTeamMembers(updatedMembers);
   };
 
-  const eventDetails = {
-    Event1: {
-      title: "CodeRush (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event2: {
-      title: "PITCHATHON ",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event3: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event4: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event5: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },Event6: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },Event7: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event8: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event9: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event10: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event11: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    Event12: {
-      title: "CodeRush2 (24Hrs Hackathon)",
-      description:
-        "A 24-hour software hackathon challenges participants to create innovative solutions.",
-      fee: "TBA",
-      date: "April 15, 2025",
-      time: "10:00 AM",
-      venue: "Conference Hall A",      
-    },
-    
-  };
-
-  // Initialize typed.js for moving letters
-  useEffect(() => {
-    new Typed("#element", {
-      strings: ["Innovatex 2.0 ", " Innovatex 3.0"],
-      typeSpeed: 150,
-    });
-  }, []);
-
-  // Countdown Timer Logic
-  useEffect(() => {
-    const eventDate = new Date("April 15, 2025 00:00:00").getTime();
-
-    const updateCountdown = () => {
-      const now = Date.now();
-      const distance = eventDate - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-        .toString()
-        .padStart(2, "0");
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        .toString()
-        .padStart(2, "0");
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        .toString()
-        .padStart(2, "0");
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
-        .toString()
-        .padStart(2, "0");
-
-      setCountdown({ days, hours, minutes, seconds });
-    };
-
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   // Event Details Modal
   const openEventDetailsModal = (eventKey) => {
     setEventDetailsModal({ isOpen: true, data: eventDetails[eventKey] });
   };
-
- 
 
   const closeEventDetailsModal = () => {
     setEventDetailsModal({ isOpen: false, data: null });
