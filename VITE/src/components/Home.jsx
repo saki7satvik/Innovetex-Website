@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Typed from "typed.js";
 import "./style.css"
 import { auth, provider, signInWithPopup } from "../firebase/firebase";
 import { AuthContext, AuthProvider } from '../Authentication/context';
-import { useContext } from 'react';
+import Dashboard from "./Dashboard";
 
 const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,39 +14,23 @@ const App = () => {
     seconds: "00",
   });
 
+  //get the authentication from context.jsx
   const { user,signIn, signOut } = useContext(AuthContext);
-
-
-
-
   const [eventDetailsModal, setEventDetailsModal] = useState({
     isOpen: false,
     data: null,
   });
 
-  const [registerDetail, setRegisterDetail] = useState({
-    isOpen: false,
-    data: null,
-  });
+  const teamMembersSectionRef = useRef(null);
 
-  const handleRegistrationModalON = async(eventName) => {
-    if(user){
-      console.log("User Info:", user);
-      setRegisterDetail({ isOpen: true, data: eventDetails[eventName] });
-    }else{  
-
-      console.log("User not logged in");
-      await handleGoogleSignIn();
-      setRegisterDetail({ isOpen: true, data: eventDetails[eventName] });
-    }
-    
-  };
-
-
-  const handleRegistrationModalOff = (eventName) => {
-    setRegisterDetail({ isOpen: false, data: null });  
-  };
-
+  const [selectedEvent, setSelectedEvent] = useState('');
+  const [teamName, setTeamName] = useState('');
+  const [teamLeaderName, setTeamLeaderName] = useState('');
+  const [teamLeaderEmail, setTeamLeaderEmail] = useState(user.email);
+  const [teamLeaderPhone, setTeamLeaderPhone] = useState('');
+  const [teamSize, setTeamSize] = useState('');
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [registerDetail, setRegisterDetail] = useState({ isOpen: false, data: null });
 
   const handleGoogleSignIn = async () => {
     try {
@@ -57,6 +41,76 @@ const App = () => {
     } catch (error) {
       console.error("Error during sign-in:", error.message);
     }
+  };
+
+  const handleRegistrationModalOn = async (eventDetails) => {
+    if (!user.email) {
+      await handleGoogleSignIn();
+    }
+    setSelectedEvent(eventDetails.title);
+    setRegisterDetail({ isOpen: true, data: eventDetails });
+  };
+
+  const handleRegistrationModalOff = () => {
+    setRegisterDetail({ isOpen: false, data: null });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    const formDetails = {
+      selectedEvent,
+      teamName,
+      teamLeaderName,
+      teamLeaderEmail,
+      teamLeaderPhone,
+      teamSize,
+      teamMembers: [],
+    };
+
+    const teamMemberInputs = teamMembersSectionRef.current.querySelectorAll("input");
+    teamMemberInputs.forEach((input) => {
+      const memberDetails = {
+        memberName: input.name === "memberName" ? input.value : null,
+        memberPhone: input.name === "memberPhone" ? input.value : null,
+      };
+      formDetails.teamMembers.push(memberDetails);
+    });
+    console.log("Form Details:", formDetails);
+
+    try {
+      const response = await fetch("http://localhost:4000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formDetails),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Server Response:", result);
+        alert("Registration successful!");
+        e.target.reset();
+      } else {
+        const error = await response.json();
+        console.error("Error Response:", error);
+        alert(`Registration failed: ${error.message}`);
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      alert("An error occurred. Please try again later.");
+    }
+  };
+
+  const handleTeamSizeChange = (e) => {
+    const size = parseInt(e.target.value);
+    setTeamSize(size);
+    setTeamMembers(Array(size).fill({ memberName: '', memberPhone: '' }));
+  };
+
+  const handleTeamMemberChange = (index, field, value) => {
+    const updatedMembers = [...teamMembers];
+    updatedMembers[index][field] = value;
+    setTeamMembers(updatedMembers);
   };
 
   const eventDetails = {
@@ -260,6 +314,10 @@ const App = () => {
               <a href="#contact" className="text-white hover:text-cyan-400">
                 Contact
               </a>
+              {/* create a profile page with a profile icon */}
+              <a href="#profile" className="text-white hover:text-cyan-400">
+                <i className="fas fa-user-circle text-2xl"></i>
+              </a>
             </div>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -297,45 +355,7 @@ const App = () => {
         id="home"
         className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-cyan-500/10 to-fuchsia-500/10"
       >
-        <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 glitch">
-            <span className="bg-clip-text text-transparent text-center bg-gradient-to-r from-cyan-400 to-fuchsia-500">
-              <span id="element" className="justify-center self-center"></span>
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            Unleash Innovation. Embrace the Future.
-          </p>
-          <div className="flex flex-col md:flex-row justify-center gap-4">
-            <button onClick={handleGoogleSignIn} className="gradient-border bg-black px-8 py-3 rounded-lg text-cyan-400 hover:text-white">
-              Register Now
-            </button>
-            <button className="px-8 py-3 rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black">
-              Explore Events
-            </button>
-          </div>
-          <div className="mt-12">
-            <div className="text-2xl mb-4 text-cyan-400">Event Starts In</div>
-            <div className="flex justify-center gap-4" id="countdown">
-              <div className="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
-                <div className="text-3xl font-bold">{countdown.days}</div>
-                <div className="text-sm">Days</div>
-              </div>
-              <div className="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
-                <div className="text-3xl font-bold">{countdown.hours}</div>
-                <div className="text-sm">Hours</div>
-              </div>
-              <div className="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
-                <div className="text-3xl font-bold">{countdown.minutes}</div>
-                <div className="text-sm">Minutes</div>
-              </div>
-              <div className="bg-black/50 p-4 rounded-lg border border-cyan-500/30">
-                <div className="text-3xl font-bold">{countdown.seconds}</div>
-                <div className="text-sm">Seconds</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Dashboard/>
       </section>
 
       {/* Events Section */}
@@ -367,7 +387,7 @@ const App = () => {
                     View Details
                   </button>
                   <button
-                    onClick={() => handleRegistrationModalON(key)}
+                    onClick={() => handleRegistrationModalOn(key)}
                     className="px-2 py-3 bg-cyan-400 text-black rounded hover:bg-cyan-300"
                   >
                     Register
@@ -380,7 +400,7 @@ const App = () => {
         </div>
       </section>
 
-
+{/* workshops */}
       <section id="workshops" class="py-20 bg-black/50">
         <div class="container mx-auto p-10">
             <h2 class="orbitron text-3xl md:text-4xl font-bold mb-12 text-center text-cyan-400">Technical Workshops</h2>
@@ -408,6 +428,8 @@ const App = () => {
             </div>
         </div>
     </section>
+
+    {/* Contacts */}
     <section id="contact" class="py-20 backdrop-blur-3xl">
         <div class="container mx-auto px-4">
             <h2 class="orbitron text-3xl md:text-4xl font-bold mb-12 text-center text-cyan-400">Get In Touch</h2>
@@ -465,7 +487,7 @@ const App = () => {
         <div class="container mx-auto px-4 text-center">
             <p class="text-gray-400">© 2025 Presidency university. All rights reserved.</p>
         </div>
-    </footer>
+    </footer> 
 
     
 
@@ -502,68 +524,144 @@ const App = () => {
         </div>
       )}
 
+      {/* Registration Modal */}
     {registerDetail.isOpen && (
-
-
       <div id="registration-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
         <div class="bg-black text-white p-6 rounded-lg max-w-lg w-full gradient-border relative">
           <button id="close-modal" onClick={handleRegistrationModalOff} class="absolute top-3 right-3 text-2xl text-cyan-400 hover:text-fuchsia-400 transition-colors">&times;</button>
           <h2 class="text-center orbitron text-2xl font-bold text-cyan-400 mb-6">Register Now</h2>
-          <form id="registration-form" class="space-y-4">
-           
+          <form id="registration-form" class="space-y-4" onSubmit={handleFormSubmit}>
             <div>
-                <div>
-                    <label class="block text-cyan-400 mb-2">Event Name</label>
-                    <input
-                    type="text"
-                    id="selected-event"
-                    name="event"
-                    readonly
-                    value={registerDetail.data.title}
-                    disabled
-                    class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
-                    />
-                </div>
-            </div>
-            <div>
-                <label class="block text-cyan-400 mb-2">Team Name *</label>
-                <input type="text" id="team-name" name="teamName" placeholder="Enter team name" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required/>
+                <label className="block text-cyan-400 mb-2">Event Name</label>
+                <input
+                  type="text"
+                  id="selected-event"
+                  name="event"
+                  readOnly
+                  value={selectedEvent}
+                  className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-cyan-400 mb-2">Team Name *</label>
+                <input
+                  type="text"
+                  id="team-name"
+                  name="teamName"
+                  placeholder="Enter team name"
+                  className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                  required
+                  value={teamName}
+                  onChange={(e) => setTeamName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-cyan-400 mb-2">Team Leader Name *</label>
+                <input
+                  type="text"
+                  id="team-leader-name"
+                  name="teamLeaderName"
+                  placeholder="Enter team leader name"
+                  className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                  required
+                  value={teamLeaderName}
+                  onChange={(e) => setTeamLeaderName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-cyan-400 mb-2">Team Leader Email *</label>
+                <input
+                  type="email"
+                  id="team-leader-email"
+                  name="teamLeaderEmail"
+                  disabled
+                  value={teamLeaderEmail}
+                  placeholder="Enter your email"
+                  className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-cyan-400 mb-2">Team Leader Phone *</label>
+                <input
+                  type="text"
+                  id="team-leader-phone"
+                  name="teamLeaderPhone"
+                  placeholder="Enter team leader phone"
+                  className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                  required
+                  value={teamLeaderPhone}
+                  onChange={(e) => setTeamLeaderPhone(e.target.value)}
+                />
               </div>
            
             <div>
-              <label class="block text-cyan-400 mb-2">Team Leader Name *</label>
-              <input type="text" id="team-leader-name" name="teamLeaderName" disabled value={user.displayName} placeholder="Enter your full name" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required/>
-            </div>
-            <div>
-              <label class="block text-cyan-400 mb-2">Team Leader Email *</label>
-              <input type="email" id="team-leader-email" name="teamLeaderEmail" disabled value={user.email} placeholder="Enter your email" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required/>
-            </div>
-            <div>
-              <label class="block text-cyan-400 mb-2">Team Leader Phone *</label>
-              <input type="tel" id="team-leader-phone" name="teamLeaderPhone" placeholder="Enter your phone number" class="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white" required/>
-            </div>
-           
-            <div>
-              <label class="block text-cyan-400 mb-2">Select Number of Team Members *</label>
+            <label className="block text-cyan-400 mb-2">Select Number of Team Members *</label>
               <div class="flex space-x-4">
-                <label class="flex items-center">
-                  <input type="radio" name="teamSize" value="2" class="mr-2" required/> 2
-                </label>
-                <label class="flex items-center">
-                  <input type="radio" name="teamSize" value="3" class="mr-2" required/> 3
-                </label>
-                <label class="flex items-center">
-                  <input type="radio" name="teamSize" value="4" class="mr-2" required/> 4
-                </label>
+              <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="teamSize"
+                      value="2"
+                      className="mr-2"
+                      required
+                      checked={teamSize === 2}
+                      onChange={handleTeamSizeChange}
+                    /> 2
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="teamSize"
+                      value="3"
+                      className="mr-2"
+                      required
+                      checked={teamSize === 3}
+                      onChange={handleTeamSizeChange}
+                    /> 3
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="teamSize"
+                      value="4"
+                      className="mr-2"
+                      required
+                      checked={teamSize === 4}
+                      onChange={handleTeamSizeChange}
+                    /> 4
+                  </label>
               </div>
             </div>
-            
-            <div id="team-members-section" class="space-y-4"></div>
+            <div id="team-members-section" ref={teamMembersSectionRef} className="space-y-4">
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="flex space-x-4">
+                    <input
+                      type="text"
+                      name="memberName"
+                      placeholder={`Member ${index + 1} Name`}
+                      className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                      value={member.memberName}
+                      onChange={(e) => handleTeamMemberChange(index, 'memberName', e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      name="memberPhone"
+                      placeholder={`Member ${index + 1} Phone`}
+                      className="w-full p-2 bg-gray-900 border border-cyan-500/30 rounded text-white"
+                      value={member.memberPhone}
+                      onChange={(e) => handleTeamMemberChange(index, 'memberPhone', e.target.value)}
+                    />
+                  </div>
+                ))}
+              </div>
         
             <div>
               <p class="text-cyan-400">Total Amount: <span id="total-amount" class="text-white">₹{registerDetail.data.fee}</span></p>
             </div>
-            <button type="submit" class="w-full bg-cyan-400 py-2 rounded hover:bg-cyan-300 text-black font-bold">Submit</button>
+            <button type="submit" className="px-8 py-3 rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black">
+                Submit
+              </button>
           </form>
         </div>
       </div>
