@@ -3,6 +3,7 @@ import Typed from "typed.js";
 import { auth, provider, signInWithPopup } from "../firebase/firebase";
 import { AuthContext, AuthProvider } from '../Authentication/context';
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 const Dashboard = () => {
      const [countdown, setCountdown] = useState({
@@ -46,6 +47,8 @@ const Dashboard = () => {
         const interval = setInterval(updateCountdown, 1000);
         return () => clearInterval(interval);
       }, []);
+
+    const {user, signIn} = useContext(AuthContext)
 
     const handleGoogleSignIn = async () => {
         try {
