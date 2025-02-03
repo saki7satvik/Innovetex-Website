@@ -165,7 +165,7 @@ const App = () => {
                 Contact
               </a>
               {/* create a profile page with a profile icon */}
-              <a href="#profile" className="text-white hover:text-cyan-400">
+              <a href="/profile" className="text-white hover:text-cyan-400">
                 <i className="fas fa-user-circle text-2xl"></i>
               </a>
             </div>
@@ -192,6 +192,9 @@ const App = () => {
             </a>
             <a href="#about" className="block text-white hover:text-cyan-400">
               About
+            </a>
+            <a href="#contact" className="block text-white hover:text-cyan-400">
+              Contact
             </a>
             <a href="#contact" className="block text-white hover:text-cyan-400">
               Contact

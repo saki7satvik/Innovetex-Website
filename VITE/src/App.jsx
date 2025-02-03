@@ -10,6 +10,7 @@ import { BrowserRouter,
   Routes
  } from 'react-router-dom'
  import { AuthProvider } from './Authentication/context'; 
+ import Profile from './components/Profile.jsx';
 
 import Home from './components/Home'
 function App() {
@@ -22,6 +23,7 @@ function App() {
        
         <Route path='/' element={<Home/>}/> 
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/profile' element={<Profile/>}/>
        
 
       </Routes>
